@@ -2,7 +2,7 @@ import Propiedad from './Propiedad.js'
 import Precio from './Precio.js'
 import Categoria from './Categoria.js'
 import Usuario from './Usuario.js'
-import Mensaje from './mensaje.js'
+import Mensaje from './Mensaje.js'
 
 Propiedad.belongsTo(Precio, { foreignKey: 'llaveForaneaPrecio', as: 'precio' })
 Propiedad.belongsTo(Categoria, { foreignKey: 'llaveForaneaCategoria', as: 'categoria' })
