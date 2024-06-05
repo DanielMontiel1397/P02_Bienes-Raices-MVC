@@ -3,9 +3,10 @@ import {Precio, Categoria, Propiedad} from "../models/index.js"
 
 const paginaInicio = async (req,res) => {
 
-    const [categorias,precios,casas,departamentos] = await Promise.all([
-        Categoria.findAll({raw:true}),
-        Precio.findAll({raw:true}),
+    const categorias = await Categoria.findAll({raw:true})
+    const Precio = await Precio.findAll({raw:true})
+
+    const [casas,departamentos] = await Promise.all([
         Propiedad.findAll({
             limit: 3,
             where: {
