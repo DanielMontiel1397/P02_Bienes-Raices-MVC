@@ -9,7 +9,7 @@ const db = new Sequelize(
     process.env.BD_PASS, //Contraseña
     {
         host: process.env.BD_HOST,
-        port: 3306,
+        port: process.env.BD_PORT,
         dialect: 'mysql',    //Sequelize soporto varias bases de datos, asi que le indicamos cual usaremos
         define: {
             timestamps: true //Al crear una nueva fila a la tabla, le agrega dos columnas, cuando fue creado y cuando fue actualizado
