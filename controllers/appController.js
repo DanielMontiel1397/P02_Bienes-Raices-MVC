@@ -3,8 +3,8 @@ import {Precio, Categoria, Propiedad} from "../models/index.js"
 
 const paginaInicio = async (req,res) => {
 
-    const [categorias] = await Categoria.findAll({raw:true})
-    const [precios] = await Precio.findAll({raw:true})
+    const categorias = await Categoria.findAll({raw:true})
+    const precios = await Precio.findAll({raw:true})
 
     const [casas,departamentos] = await Promise.all([
         Propiedad.findAll({
