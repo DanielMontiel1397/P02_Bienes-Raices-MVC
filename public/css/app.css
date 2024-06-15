@@ -602,14 +602,11 @@ video {
 .h-96 {
   height: 24rem;
 }
-.h-\[400px\] {
-  height: 400px;
+.h-\[600px\] {
+  height: 600px;
 }
 .h-auto {
   height: auto;
-}
-.h-\[600px\] {
-  height: 600px;
 }
 .min-h-screen {
   min-height: 100vh;

@@ -3,14 +3,15 @@ import {Precio, Categoria, Propiedad} from "../models/index.js"
 
 const paginaInicio = async (req,res) => {
 
-    const categorias = await Categoria.findAll({raw:true})
-    const Precio = await Precio.findAll({raw:true})
+    const [categorias] = await Categoria.findAll({raw:true})
+    const [precios] = await Precio.findAll({raw:true})
 
     const [casas,departamentos] = await Promise.all([
         Propiedad.findAll({
             limit: 3,
             where: {
-                llaveForaneaCategoria: 1
+                llaveForaneaCategoria: 1,
+                publicado: 1
             },
             include: [
                 {model: Precio, as: 'precio'}
@@ -22,7 +23,8 @@ const paginaInicio = async (req,res) => {
         Propiedad.findAll({
             limit: 3,
             where: {
-                llaveForaneaCategoria: 2
+                llaveForaneaCategoria: 2,
+                publicado: 1
             },
             include: [
                 {model: Precio, as: 'precio'}

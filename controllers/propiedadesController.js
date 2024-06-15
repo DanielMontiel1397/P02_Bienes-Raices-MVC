@@ -362,7 +362,7 @@ const mostrarPropiedad = async (req,res) => {
 
     //Validar
     const {id} = req.params;
-
+    
     const propiedad = await Propiedad.findByPk(id, {
         include: [
             {model: Precio, as: 'precio'},
