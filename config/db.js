@@ -17,7 +17,7 @@ const db = new Sequelize(
         /*El pool configura  como va a ser el comportamiento para conexiones nuevas o existentes.
         */
         pool: {
-            max: 5, //Tiempo máximo de conexiones a mantener de cada usuario.
+            max: 4, //Tiempo máximo de conexiones a mantener de cada usuario.
             min: 0, //Minimo 0
             acquire: 30000, //Son 30 mil milisegundos, es el tiempo que va a pasar tratando de hacer una conexion antes de marcar un error.
             idle: 10000 //Le damos 10 segundos en lo que ve que no hay nada de movimiento para cerrar la conexión.
