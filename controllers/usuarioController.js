@@ -20,7 +20,7 @@ const autenticar = async (req,res) => {
     await check('passwordInicio').notEmpty().withMessage('El password no puede ir vacio').run(req);
 
     let resultado = validationResult(req);
-    console.log(req.body);
+    
     //Verificar que el resultado este vacio
     if(!resultado.isEmpty()){
         //Si no esta vacio, hay errores

@@ -383,6 +383,84 @@ const mostrarPropiedad = async (req,res) => {
     })
 }
 
+//Mostrar todas las propiedades
+const mostrarPropiedadesTodas = async (req,res) => {
+
+    const categorias = await Categoria.findAll({raw:true})
+    const precios = await Precio.findAll({raw:true})
+
+    const [casas,departamentos] = await Promise.all([
+        Propiedad.findAll({
+            limit: 3,
+            where: {
+                llaveForaneaCategoria: 1,
+                publicado: 1
+            },
+            include: [
+                {model: Precio, as: 'precio'}
+            ],
+            order: [
+                ['createdAt','DESC']
+            ]
+        }),
+        Propiedad.findAll({
+            limit: 3,
+            where: {
+                llaveForaneaCategoria: 2,
+                publicado: 1
+            },
+            include: [
+                {model: Precio, as: 'precio'}
+            ],
+            order: [
+                ['createdAt','DESC']
+            ]
+        })
+    ])
+
+    res.render('propiedades/todasPropiedades',{
+        pagina: "Inicio",
+        categorias,
+        precios,
+        casas,
+        departamentos,
+        csrfToken: req.csrfToken()
+    })
+}
+
+//Propiedades filtradas por categoria
+const filtrarCategoria = async (req,res) => {
+
+    const {id} = req.params;
+
+    //Comprobar que la categoria existe
+    const categoria = await Categoria.findByPk(id)
+
+    if(!categoria){
+        return res.render('404',{
+            pagina: 'No Encontrada'
+        });
+    }
+
+    //Obtener las propiedades
+    const propiedades = await Propiedad.findAll({
+        where: {
+            llaveForaneaCategoria: id
+        },
+        include: [
+            {model: Precio, as: 'precio'}
+        ]
+        
+    })
+
+    res.render('propiedades/categoriaPropiedades',{
+        pagina: `${categoria.categoriaPropiedad}s en venta`,
+        propiedades,
+        csrfToken: req.csrfToken()
+    })
+
+}
+
 //Enviar Mensaje a vendedor
 const enviarMensaje = async(req,res) =>{
 
@@ -439,7 +517,7 @@ const enviarMensaje = async(req,res) =>{
         enviado: true
     })
 
-    res.redirect('/')
+    //res.redirect('/');
 }
 
 //Leer mensajes recibidos
@@ -484,6 +562,8 @@ export {
     eliminarPropiedad,
     cambiarEstado,
     mostrarPropiedad,
+    mostrarPropiedadesTodas,
+    filtrarCategoria,
     enviarMensaje,
     verMensajes
 }

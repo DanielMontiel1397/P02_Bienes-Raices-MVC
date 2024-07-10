@@ -1,4 +1,7 @@
-extends ./layout/app
+extends ../layout/admin
+
+block categorias 
+    include ../layout/includes/navegadorCategorias
 
 block styles 
     link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
@@ -32,14 +35,14 @@ block contenido
 
             div(class="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-14")
                 each propiedad in casas 
-                    include ./templates/cardApp
+                    include ../templates/card
 
         section(class="py-5")
             h2(class="text-center text-4xl font-extrabold pt-10") Departamentos en Venta
 
             div(class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-14")
                 each propiedad in departamentos 
-                    include ./templates/cardApp
+                    include ../templates/card
 
 block scripts 
     script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")

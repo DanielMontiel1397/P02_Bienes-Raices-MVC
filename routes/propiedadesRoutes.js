@@ -1,5 +1,5 @@
 import express from 'express';
-import { admin,crear, guardarPropiedad, agregarImagen, almacenarImagen, editarPropiedad, guardarCambios,eliminarPropiedad, cambiarEstado, mostrarPropiedad, enviarMensaje, verMensajes } from '../controllers/propiedadesController.js';
+import { admin,crear, guardarPropiedad, agregarImagen, almacenarImagen, editarPropiedad, guardarCambios,eliminarPropiedad, cambiarEstado, mostrarPropiedad, enviarMensaje, verMensajes, mostrarPropiedadesTodas, filtrarCategoria } from '../controllers/propiedadesController.js';
 import { identificarUsuario } from '../middeleware/identificarUsuario.js';
 import protegerRuta from '../middeleware/protegerRuta.js';
 import upload from '../middeleware/subirImagen.js';
@@ -8,7 +8,11 @@ import { body } from 'express-validator';
 
 const router = express.Router();
 
-router.get('/mis-propiedades',protegerRuta, admin)
+router.get('/mis-propiedades',protegerRuta, admin);
+router.get('/',mostrarPropiedadesTodas);
+
+//Filtrar por categoria
+router.get('/categorias/:id',filtrarCategoria);
 
 router.get('/crear',protegerRuta,crear);
 router.post('/crear',protegerRuta,

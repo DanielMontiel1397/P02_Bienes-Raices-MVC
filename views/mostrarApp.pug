@@ -1,15 +1,16 @@
-extends ../layout/admin
-
-block categorias 
-    include ../layout/includes/navegadorCategorias
+extends ./layout/app
 
 block styles 
     link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
 
 block contenido 
-
+    
     div(class="py-5")
         h1(class="text-4xl my-2 font-extrabold text-center")= propiedad.tituloPropiedad 
+
+        div 
+            a(href="#" class="font-bold text-gray-600 text-sm") Categoria: 
+                span(class="font-normal")= propiedad.categoria.categoriaPropiedad
 
         div(class="mt-5 md:flex md:gap-4 md:items-start")
             div(class="md:w-2/3 bg-white rounded-lg")
@@ -69,7 +70,8 @@ block contenido
                             div(class="flex flex-col items-center justify-center gap-2")
                                 p(class="text-center") Si deseas contactar al vendedor 
                                 a(class="text-indigo-600" href="/auth/login") debes crear una cuenta
-
+                    else 
+                        p ES EL VENDEDOR
 
                         
 

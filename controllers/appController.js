@@ -1,5 +1,6 @@
 import { Sequelize} from "sequelize"
 import {Precio, Categoria, Propiedad} from "../models/index.js"
+import { esVendedor } from "../helpers/index.js"
 
 const paginaInicio = async (req,res) => {
 
@@ -35,6 +36,8 @@ const paginaInicio = async (req,res) => {
         })
     ])
 
+    console.log(casas);
+
     res.render('inicio',{
         pagina: "Inicio",
         categorias,
@@ -42,6 +45,31 @@ const paginaInicio = async (req,res) => {
         casas,
         departamentos,
         csrfToken: req.csrfToken()
+    })
+}
+
+const mostrarPropiedad = async (req,res) => {
+
+    //Validar
+    const {id} = req.params;
+    
+    const propiedad = await Propiedad.findByPk(id, {
+        include: [
+            {model: Precio, as: 'precio'},
+            {model: Categoria, as: 'categoria'}
+        ]
+    });
+
+    if(!propiedad || !propiedad.publicado){
+        return res.redirect('/404')
+    }
+
+    res.render('mostrarApp',{
+        propiedad,
+        pagina: propiedad.titulo,
+        csrfToken: req.csrfToken(),
+        usuario: req.usuario,
+        esVendedor: esVendedor(req.usuario?.id,propiedad.llaveForaneaUsuario)
     })
 }
 
@@ -115,6 +143,7 @@ const buscador = async (req,res) => {
 
 export {
     paginaInicio,
+    mostrarPropiedad,
     paginaCategoria,
     paginaNoEncontrado,
     buscador
