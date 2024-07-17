@@ -21,7 +21,7 @@ const emailRegistroEnvio = async (datos) => {
         html: `
             <p>Hola ${nombre}, comprueba tú cuenta en BienesRaices.com</p>
             <p>Tú cuenta ya esta lista, solo debes confirmarla en el siguiente enlace:
-            <a href="https://p02-bienes-raices-mvc.onrender.com//auth/confirmar/${token}">Confirmar Cuenta</a> </p>
+            <a href="https://p02-bienes-raices-mvc.onrender.com/auth/confirmar/${token}">Confirmar Cuenta</a> </p>
 
             <p>Si tú no creaste esta cuenta, puedes ignorar el mensaje</p>
         `
