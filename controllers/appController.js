@@ -36,7 +36,6 @@ const paginaInicio = async (req,res) => {
         })
     ])
 
-    console.log(casas);
 
     res.render('inicio',{
         pagina: "Inicio",

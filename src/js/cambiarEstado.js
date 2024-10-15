@@ -21,7 +21,6 @@
                 }
             });
 
-            console.log(respuesta)
             const resultado = await respuesta.json()
 
             if(resultado){
@@ -35,7 +34,6 @@
                     e.target.textContent = 'No Publicado'
                 }
             } 
-            console.log(resultado)
             
         } catch(error){
             console.log(error)
