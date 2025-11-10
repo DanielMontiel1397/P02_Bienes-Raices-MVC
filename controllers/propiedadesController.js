@@ -158,7 +158,6 @@ const agregarImagen = async (req,res) => {
 
     //Validar que la propiedad pertenece a quien visita esta pagina
     if(propiedad.llaveForaneaUsuario.toString() !== req.usuario.id.toString()){
-        console.log(propiedad.llaveForaneaUsuario)
         console.log(req.usuario.id)
         return res.redirect('/propiedades/mis-propiedades')
     }
@@ -171,6 +170,7 @@ const agregarImagen = async (req,res) => {
 }
 
 const almacenarImagen = async (req,res,next) => {
+    
     const {id} = req.params
 
     //Validar que la propiedad exista
@@ -193,13 +193,14 @@ const almacenarImagen = async (req,res,next) => {
     }
 
     try{
-
         //Almacenar la imagen y publicar propiedad
-        propiedad.imagen = req.file.filename
+        propiedad.imagen = req.file.path
 
         propiedad.publicado = 1;
         
         await propiedad.save();
+
+        console.log('✅ Imagen guardada:', propiedad.imagen);
         next()
 
     } catch(error){

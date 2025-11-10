@@ -18,12 +18,12 @@ block contenido
                         li 
                             div(class="p-6 w-full flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-8 md:space-y-0 gap-4")
                                 div(class="sm:w-1/4 md:w-1/6") 
-                                    img(src=`/uploads/${propiedad.imagen}` alt=`Imagen propiedad ${propiedad.tituloPropiedad}` class="w-full block")
+                                    img(src=propiedad.imagen alt=`Imagen propiedad ${propiedad.tituloPropiedad}` class="w-full block")
                                 
                                 div(class="sm:w-2/4 md:w-3/6 lg:w-4/6 space-y-3")
                                     a(href=`/propiedades/propiedad/${propiedad.id}` class="block text-2xl font-extrabold text-indigo-600 truncate")= propiedad.tituloPropiedad
 
-                                    p(class="text-sm text-black font-bold")= propiedad.categoria.categoriaPropiedad
+                                    p(class="text-sm text-black font-bold")=  propiedad.categoria.categoriaPropiedad
 
                                     p(class="text-sm text-gray-500 font-bold flex items-center")
                                         svg(xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6")

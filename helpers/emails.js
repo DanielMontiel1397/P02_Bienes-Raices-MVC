@@ -49,7 +49,7 @@ const emailOlvidePassword = async (datos) => {
       html: `
           <p>Hola ${nombre}, has solicitado reestablecer tú password en BienesRaices.com</p>
           <p>Sige el siguiente enlace para generar un password nuevo:
-          <a href="${process.env.BACKEND_URL}:${process.env.PORT ?? 3000}/auth/forgetPassword/${token}">Restablecer Password</a> </p>
+          <a href="${process.env.BACKEND_URL}:${process.env.PORT ?? 4000}/auth/forgetPassword/${token}">Restablecer Password</a> </p>
 
           <p>Si tú no solicitaste el cambio de passsword, puedes ignorar el mensaje</p>
       `
