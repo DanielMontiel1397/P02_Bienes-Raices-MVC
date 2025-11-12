@@ -26,7 +26,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
-        folder: 'public/uploads',
+        folder: 'public/bienesraices',
         allowed_formats: ['jpg','jpeg','png','gif', 'webp'],
         public_id: (req, file) => generarId()
     }

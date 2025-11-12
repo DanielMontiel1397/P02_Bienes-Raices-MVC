@@ -1,0 +1,33 @@
+/* Contenedor general del mapa */
+#mapa-inicio {
+  border: 2px solid #6366f1; /* color índigo */
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Botones de zoom (+ y -) */
+.leaflet-control-zoom a {
+  background-color: #6366f1; /* color de fondo */
+  color: white !important;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+/* Hover sobre los botones de zoom */
+.leaflet-control-zoom a:hover {
+  background-color: #4f46e5;
+}
+
+/* Caja de información del popup */
+.leaflet-popup-content-wrapper {
+  border-radius: 10px;
+  background-color: #f9fafb;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Texto dentro del popup */
+.leaflet-popup-content p {
+  margin: 4px 0;
+  color: #374151;
+}

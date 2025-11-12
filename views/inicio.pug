@@ -2,6 +2,7 @@ extends ./layout/app
 
 block styles 
     link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
+    link(rel="stylesheet", href="/css/mapa.css")
 
 block contenido 
     
@@ -25,7 +26,7 @@ block contenido
                     each precio in precios 
                         option(value=precio.id )= precio.precioPropiedad
 
-        div(id="mapa-inicio" class="h-[600px] mt-5")
+        div(id="mapa-inicio" class="h-[500px] mt-5 w-3/4 mx-auto text-black")
 
         section(class="py-5")
             h2(class="text-center text-4xl font-extrabold pt-10") Casas en Venta

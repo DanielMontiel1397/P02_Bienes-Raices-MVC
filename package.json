@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node ./index.js",
-    "server": "nodemon index.js",
+    "server": "nodemon index.js --ext js,pug",
     "css": "postcss public/css/tailwind.css -o public/css/app.css --watch",
     "js": "webpack --watch",
     "dev": "concurrently \"npm run css\" \"npm run js\"",
