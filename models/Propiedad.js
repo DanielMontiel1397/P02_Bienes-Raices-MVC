@@ -44,6 +44,9 @@ const Propiedad = db.define('propiedades', {
             type: DataTypes.STRING,
             allowNull: false
         },
+        imagen_id: {
+            type:DataTypes.STRING
+        },
         publicado: {
             type: DataTypes.BOOLEAN,
             allowNull: false,

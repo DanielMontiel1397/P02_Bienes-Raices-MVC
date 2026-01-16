@@ -2,6 +2,7 @@ import {unlink} from "node:fs/promises"
 import { validationResult } from "express-validator";
 import { Usuario,Precio, Categoria, Propiedad, Mensaje} from '../models/index.js'
 import { esVendedor, formatearFecha } from "../helpers/index.js";
+import { v2 } from "cloudinary";
 
 const admin = async (req,res) => {
 
@@ -195,7 +196,7 @@ const almacenarImagen = async (req,res,next) => {
     try{
         //Almacenar la imagen y publicar propiedad
         propiedad.imagen = req.file.path
-
+        propiedad.imagen_id = req.file.filename;
         propiedad.publicado = 1;
         
         await propiedad.save();
@@ -320,7 +321,14 @@ const eliminarPropiedad = async (req,res) => {
     }
     
     //Eliminar la imagen
-    await unlink(`public/uploads/${propiedad.imagen}`)
+   if(propiedad.imagen_id){
+    try {
+        await v2.uploader.destroy(propiedad.imagen_id);
+        console.log('Imagen eliminada de Cloudinary');
+    } catch (error) {
+        console.log('Error al eliminar imagen de Cloudinary', error);
+    }
+   }
 
     //Eliminar la propiedad
     await propiedad.destroy();

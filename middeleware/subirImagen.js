@@ -1,21 +1,7 @@
 import multer from "multer";
-import path from 'path'
 import {generarId} from '../helpers/tokens.js'
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import {v2 as cloudinary} from 'cloudinary';
-
-/*
-const storage = multer.diskStorage({
-    destination: function(req,archivo,callback){
-        callback(null,'public/uploads')
-    },
-    filename: function(req,archivo,callback){
-        callback(null,generarId() + path.extname(archivo.originalname))
-    }
-})
-
-const upload = multer({storage})
-*/
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
